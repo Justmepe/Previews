@@ -163,17 +163,14 @@
 
   /* ABOUT */
   .about{background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-  .about-visual{position:relative;}
-  .about-img{width:100%;height:380px;background:var(--navy-mid);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);position:relative;}
-  /* Stylised reception */
-  .rec-wall{position:absolute;top:0;left:0;right:0;height:58%;background:linear-gradient(180deg,#e0e4ec 0%,#eceef4 100%);}
-  .rec-stripe{position:absolute;top:55%;left:0;right:0;height:3%;background:repeating-linear-gradient(90deg,#c8ccd8 0px,#c8ccd8 30px,#d5d9e3 30px,#d5d9e3 60px);}
-  .rec-ceiling-light{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(180,210,255,0.9),rgba(140,180,255,0.4),transparent);box-shadow:0 0 50px rgba(140,180,255,0.4);}
-  .rec-logo-area{position:absolute;top:28%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-  .rec-logo-lbl{font-size:0.55rem;font-weight:800;color:var(--navy);letter-spacing:0.12em;text-transform:uppercase;line-height:1.4;margin-top:4px;}
-  .rec-desk{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:68%;height:40%;background:#c8a87a;border-radius:4px 4px 0 0;display:flex;align-items:center;justify-content:center;box-shadow:0 -4px 20px rgba(0,0,0,0.15);}
-  .rec-desk-label{font-weight:800;font-size:1rem;color:var(--navy);letter-spacing:0.15em;}
-  .about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--orange);border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 8px 32px rgba(224,123,26,0.4);text-align:center;}
+  .about-visual{position:relative;display:flex;align-items:center;justify-content:space-between;}
+  .about-img{flex:1;height:380px;background:var(--navy-mid);border-radius:12px;overflow:visible;border:1px solid rgba(255,255,255,0.1);position:relative;}
+  .rec-wall{display:none;}
+  .rec-ceiling-light{display:none;}
+  .rec-stripe{display:none;}
+  .rec-logo-area{display:none;}
+  .rec-desk{display:none;}
+  .about-badge{flex:0 0 auto;position:static;background:var(--orange);border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 8px 32px rgba(224,123,26,0.4);text-align:center;width:220px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-left:-40px;z-index:1;}
   .about-badge .big{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--white);}
   .about-badge .small{font-size:0.68rem;color:rgba(255,255,255,0.8);letter-spacing:0.1em;text-transform:uppercase;}
   .about-content .section-title{color:var(--white);}

@@ -199,13 +199,8 @@
 
   /* ── WHY US ── */
   .whyus{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:var(--white);}
-  /* Interior mockup - white/teal clinic */
-  .interior-mock{
-    height:420px;border-radius:20px;overflow:hidden;
-    position:relative;
-    background:linear-gradient(135deg,#f0fafa 0%,#e0f5f4 100%);
-    border:1px solid var(--border);
-  }
+  /* Interior mockup */
+  .interior-mock{position:relative;display:flex;align-items:center;justify-content:space-between;height:auto;border-radius:0;background:transparent;border:none;box-shadow:none;overflow:visible;}
   .int-ceiling{position:absolute;top:0;left:0;right:0;height:12%;background:#f8fdfd;border-bottom:1px solid var(--border);}
   .int-teal-wall{position:absolute;top:12%;left:0;width:38%;bottom:0;background:var(--teal);}
   .int-teal-wall-accent{position:absolute;top:12%;left:38%;width:3px;bottom:0;background:var(--teal-d);}
@@ -221,13 +216,21 @@
   .int-logo-watermark .ilw2{font-size:0.5rem;font-weight:600;color:rgba(255,255,255,0.7);margin-top:1px;}
   /* Teal accent dot top-right */
   .int-dot{position:absolute;top:20%;right:6%;width:80px;height:80px;border-radius:50%;background:rgba(0,158,148,0.15);border:1px solid rgba(0,158,148,0.3);}
-  /* Floating stat card */
   .int-stat{
-    position:absolute;bottom:38%;right:-10px;
+    flex:0 0 auto;
+    position:static;
     background:var(--teal);color:var(--white);
     border-radius:12px;padding:1rem 1.25rem;
     box-shadow:0 8px 30px rgba(0,158,148,0.4);
     text-align:center;
+    width:200px;
+    height:200px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-left:-40px;
+    z-index:1;
   }
   .int-stat .isn{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;}
   .int-stat .isl{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.85;margin-top:1px;}
