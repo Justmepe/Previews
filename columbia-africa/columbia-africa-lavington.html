@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Columbia Africa Healthcare — Lavington Clinic, Nairobi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:      #009e94;
+    --teal-d:    #007a72;
+    --teal-l:    #00bdb2;
+    --teal-pale: #e6f7f6;
+    --green:     #4caf50;
+    --green-l:   #e8f5e9;
+    --white:     #ffffff;
+    --off:       #f4f8f8;
+    --light:     #eaf4f4;
+    --muted:     #6b8080;
+    --text:      #1a2e2e;
+    --dark:      #0d1f1f;
+    --border:    #d0e8e7;
+    --charcoal:  #2c3e3e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;overflow-x:hidden;}
+
+  /* ── NAV ── */
+  nav{
+    position:fixed;top:0;width:100%;z-index:100;
+    background:rgba(255,255,255,0.97);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:0 5rem;height:70px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{display:flex;align-items:center;gap:0.65rem;text-decoration:none;}
+  .logo-mark{
+    width:38px;height:38px;
+    background:var(--teal);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-words{display:flex;flex-direction:column;line-height:1.15;}
+  .logo-words .lw1{font-size:0.95rem;font-weight:800;color:var(--teal);letter-spacing:-0.01em;}
+  .logo-words .lw2{font-size:0.6rem;font-weight:600;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--teal);}
+  .nav-right{display:flex;align-items:center;gap:0.875rem;}
+  .nav-call{font-size:0.82rem;font-weight:700;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.35rem;}
+  .nav-book{background:var(--teal);color:var(--white);padding:0.55rem 1.35rem;border-radius:50px;font-size:0.82rem;font-weight:700;text-decoration:none;transition:all 0.2s;}
+  .nav-book:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,158,148,0.35);}
+
+  /* ── HERO ── */
+  .hero{
+    min-height:100vh;
+    background:var(--white);
+    display:grid;grid-template-columns:1fr 1fr;
+    align-items:center;padding:7rem 0 0 5rem;
+    position:relative;overflow:hidden;
+  }
+  /* Teal shape right side */
+  .hero-shape{
+    position:absolute;right:0;top:0;bottom:0;width:48%;
+    background:linear-gradient(160deg,var(--teal) 0%,var(--teal-d) 60%,#005f5a 100%);
+    clip-path:polygon(8% 0,100% 0,100% 100%,0% 100%);
+    z-index:0;
+  }
+  .hero-shape::before{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(-30deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 50px);
+  }
+  /* Floating glass building mockup */
+  .hero-building{
+    position:absolute;right:3%;top:50%;transform:translateY(-50%);
+    width:42%;z-index:1;
+    display:flex;align-items:center;justify-content:center;
+    animation:fadeUp 0.8s ease 0.3s both;
+  }
+  .building-card{
+    width:100%;max-width:380px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:16px;padding:1.5rem;
+  }
+  /* Glass building illustration */
+  .building-svg-wrap{width:100%;height:220px;position:relative;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#b8d8e8 0%,#d0eaf5 40%,#e8f5fa 100%);}
+  .b-sky{position:absolute;inset:0;background:linear-gradient(180deg,#87ceeb 0%,#b0d9f0 100%);}
+  .b-ground{position:absolute;bottom:0;left:0;right:0;height:20%;background:#c8d5c8;}
+  /* Main building */
+  .b-main{position:absolute;bottom:20%;left:10%;width:55%;height:72%;background:linear-gradient(180deg,#d0e8f5 0%,#b8d5ea 100%);border:1px solid rgba(255,255,255,0.6);}
+  .b-glass{position:absolute;inset:5px;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(6,1fr);gap:2px;padding:4px;}
+  .b-pane{background:rgba(100,160,200,0.6);border-radius:1px;}
+  .b-pane.bright{background:rgba(180,220,240,0.9);}
+  .b-canopy{position:absolute;bottom:0;left:-5%;width:110%;height:12%;background:linear-gradient(180deg,#555,#333);border-radius:2px 2px 0 0;}
+  .b-sign{position:absolute;top:8%;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.9);padding:3px 8px;border-radius:2px;font-size:0.5rem;font-weight:800;color:var(--teal);white-space:nowrap;letter-spacing:0.05em;}
+  /* Side wing */
+  .b-wing{position:absolute;bottom:20%;right:8%;width:28%;height:55%;background:linear-gradient(180deg,#c0d8e8 0%,#a8c5da 100%);border:1px solid rgba(255,255,255,0.5);}
+  .b-wing-glass{position:absolute;inset:4px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(5,1fr);gap:2px;}
+  .b-wpane{background:rgba(100,160,200,0.5);border-radius:1px;}
+  /* Teal accent stripe */
+  .b-stripe{position:absolute;top:0;left:0;right:0;height:4px;background:var(--teal);}
+
+  .building-stats{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-top:1rem;
+  }
+  .b-stat{text-align:center;background:rgba(255,255,255,0.15);border-radius:8px;padding:0.6rem;}
+  .b-stat-num{font-size:1.1rem;font-weight:800;color:var(--white);}
+  .b-stat-lbl{font-size:0.6rem;color:rgba(255,255,255,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.1rem;}
+
+  .hero-content{position:relative;z-index:2;padding-bottom:4rem;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    background:var(--teal-pale);border:1px solid rgba(0,158,148,0.25);
+    padding:0.35rem 0.9rem;border-radius:50px;
+    font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:1.75rem;
+    animation:fadeUp 0.7s ease both;
+  }
+  .hero-tag::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(2.4rem,4vw,3.8rem);
+    font-weight:600;line-height:1.1;
+    color:var(--text);
+    animation:fadeUp 0.7s ease 0.1s both;
+  }
+  .hero h1 em{font-style:italic;color:var(--teal);}
+  .hero-sub{
+    margin-top:1.25rem;font-size:1rem;line-height:1.75;
+    color:var(--muted);max-width:460px;
+    animation:fadeUp 0.7s ease 0.2s both;
+  }
+  .hero-rating{
+    display:inline-flex;align-items:center;gap:0.6rem;
+    margin-top:1.5rem;
+    background:var(--off);border:1px solid var(--border);
+    padding:0.5rem 1rem;border-radius:10px;
+    animation:fadeUp 0.7s ease 0.28s both;
+  }
+  .hero-rating .stars{color:#f59e0b;font-size:0.9rem;}
+  .hero-rating .rt{font-size:0.8rem;color:var(--muted);}
+  .hero-rating .rt strong{color:var(--text);}
+  .hero-actions{display:flex;gap:0.875rem;margin-top:2rem;animation:fadeUp 0.7s ease 0.36s both;}
+  .btn-teal{background:var(--teal);color:var(--white);padding:0.85rem 1.75rem;border:none;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;}
+  .btn-teal:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,158,148,0.35);}
+  .btn-ghost{background:transparent;color:var(--text);padding:0.85rem 1.75rem;border:1.5px solid var(--border);border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+  .hero-chips{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:2rem;animation:fadeUp 0.7s ease 0.44s both;}
+  .chip{display:flex;align-items:center;gap:0.4rem;background:var(--teal-pale);border-radius:50px;padding:0.35rem 0.8rem;font-size:0.75rem;font-weight:600;color:var(--teal-d);}
+  .chip::before{content:'✓';font-size:0.65rem;font-weight:900;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ── TICKER ── */
+  .ticker{
+    background:var(--teal);padding:0.9rem 0;
+    overflow:hidden;border-top:3px solid var(--teal-d);
+  }
+  .ticker-track{display:flex;gap:4rem;animation:tickerMove 22s linear infinite;white-space:nowrap;}
+  .ticker-item{display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.9);font-size:0.8rem;font-weight:600;letter-spacing:0.06em;flex-shrink:0;}
+  .ticker-dot{width:5px;height:5px;background:rgba(255,255,255,0.5);border-radius:50%;}
+  @keyframes tickerMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ── SECTIONS ── */
+  section{padding:6rem 5rem;}
+  .section-chip{display:inline-flex;align-items:center;gap:0.5rem;background:var(--teal-pale);border-radius:50px;padding:0.3rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3vw,2.7rem);font-weight:600;line-height:1.12;color:var(--text);}
+  .section-title em{font-style:italic;color:var(--teal);}
+
+  /* ── SERVICES ── */
+  .services{background:var(--off);}
+  .svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;}
+  .svc-header p{max-width:380px;color:var(--muted);font-size:0.9rem;line-height:1.7;}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+  .svc-card{
+    background:var(--white);border-radius:16px;padding:1.75rem;
+    border:1px solid var(--border);
+    transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;
+  }
+  .svc-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--teal);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.3s;border-radius:16px 16px 0 0;
+  }
+  .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,158,148,0.12);border-color:rgba(0,158,148,0.3);}
+  .svc-card:hover::before{transform:scaleX(1);}
+  .svc-emoji{font-size:2rem;margin-bottom:1rem;display:block;}
+  .svc-name{font-weight:700;color:var(--text);font-size:0.95rem;margin-bottom:0.5rem;}
+  .svc-desc{font-size:0.8rem;color:var(--muted);line-height:1.65;}
+  .svc-more{display:flex;align-items:center;gap:0.3rem;margin-top:1rem;font-size:0.75rem;font-weight:700;color:var(--teal);opacity:0;transition:opacity 0.3s;}
+  .svc-card:hover .svc-more{opacity:1;}
+
+  /* ── WHY US ── */
+  .whyus{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:var(--white);}
+  /* Interior mockup - white/teal clinic */
+  .interior-mock{
+    height:420px;border-radius:20px;overflow:hidden;
+    position:relative;
+    background:linear-gradient(135deg,#f0fafa 0%,#e0f5f4 100%);
+    border:1px solid var(--border);
+  }
+  .int-ceiling{position:absolute;top:0;left:0;right:0;height:12%;background:#f8fdfd;border-bottom:1px solid var(--border);}
+  .int-teal-wall{position:absolute;top:12%;left:0;width:38%;bottom:0;background:var(--teal);}
+  .int-teal-wall-accent{position:absolute;top:12%;left:38%;width:3px;bottom:0;background:var(--teal-d);}
+  .int-white-wall{position:absolute;top:12%;left:41%;right:0;bottom:0;background:#f4fafa;}
+  .int-desk{position:absolute;bottom:0;left:30%;right:0;height:32%;background:white;border-top:3px solid var(--teal);border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+  .int-desk-text{font-size:0.65rem;font-weight:800;color:var(--teal);letter-spacing:0.15em;text-transform:uppercase;}
+  /* Reception chairs */
+  .int-chairs{position:absolute;bottom:32%;left:42%;display:flex;gap:6px;}
+  .int-chair{width:22px;height:28px;background:#1a1a1a;border-radius:3px 3px 0 0;}
+  /* Columbia Africa logo watermark */
+  .int-logo-watermark{position:absolute;top:20%;left:6%;color:var(--white);opacity:0.9;}
+  .int-logo-watermark .ilw1{font-size:0.7rem;font-weight:800;letter-spacing:0.05em;}
+  .int-logo-watermark .ilw2{font-size:0.5rem;font-weight:600;color:rgba(255,255,255,0.7);margin-top:1px;}
+  /* Teal accent dot top-right */
+  .int-dot{position:absolute;top:20%;right:6%;width:80px;height:80px;border-radius:50%;background:rgba(0,158,148,0.15);border:1px solid rgba(0,158,148,0.3);}
+  /* Floating stat card */
+  .int-stat{
+    position:absolute;bottom:38%;right:-10px;
+    background:var(--teal);color:var(--white);
+    border-radius:12px;padding:1rem 1.25rem;
+    box-shadow:0 8px 30px rgba(0,158,148,0.4);
+    text-align:center;
+  }
+  .int-stat .isn{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;}
+  .int-stat .isl{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.85;margin-top:1px;}
+  /* Open badge */
+  .int-open{position:absolute;top:18%;right:8%;background:var(--green-l);border:1.5px solid var(--green);border-radius:50px;padding:0.3rem 0.75rem;font-size:0.7rem;font-weight:700;color:#2e7d32;display:flex;align-items:center;gap:0.35rem;}
+  .int-open::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+
+  .whyus-content .section-chip{margin-bottom:0.75rem;}
+  .whyus-content p{margin-top:1.25rem;color:var(--muted);font-size:0.95rem;line-height:1.8;}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+  .pillar{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:1.25rem;}
+  .pillar-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+  .pillar-name{font-weight:700;color:var(--text);font-size:0.88rem;margin-bottom:0.3rem;}
+  .pillar-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+
+  /* ── DEPARTMENTS ── */
+  .departments{background:var(--teal);position:relative;overflow:hidden;}
+  .departments::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 50px);}
+  .dept-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;position:relative;z-index:1;}
+  .dept-header .section-title{color:var(--white);}
+  .dept-header .section-title em{color:rgba(255,255,255,0.7);}
+  .dept-header p{max-width:340px;color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;}
+  .dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;z-index:1;}
+  .dept-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:1.5rem;transition:all 0.3s;cursor:pointer;}
+  .dept-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-3px);border-color:rgba(255,255,255,0.3);}
+  .dept-icon{font-size:1.75rem;margin-bottom:0.75rem;}
+  .dept-name{font-weight:700;color:var(--white);font-size:0.9rem;margin-bottom:0.4rem;}
+  .dept-sub{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .dept-arrow{margin-top:1rem;font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.5);transition:color 0.2s,transform 0.2s;display:inline-block;}
+  .dept-card:hover .dept-arrow{color:var(--white);transform:translateX(4px);}
+
+  /* ── RECEPTION ── */
+  .reception{background:var(--white);position:relative;overflow:hidden;}
+  .reception-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+  .rec-mockup{height:300px;background:linear-gradient(135deg,#d4b896 0%,#c8a878 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 8px 32px rgba(0,158,148,0.1);border:1px solid rgba(0,158,148,0.1);}
+  .rec-label{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:600;letter-spacing:0.08em;color:var(--text);text-transform:uppercase;}
+  .rec-content h2{margin-bottom:2rem;}
+  .rec-badge{background:#e07b1a;color:var(--white);border-radius:16px;padding:2rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:300px;box-shadow:0 12px 40px rgba(224,123,26,0.3);}
+  .rec-rating-num{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:600;line-height:1;margin-bottom:0.5rem;}
+  .rec-rating-stars{font-size:1.2rem;color:rgba(255,255,255,0.95);margin-bottom:0.75rem;}
+  .rec-rating-text{font-size:0.95rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.9);}
+
+  /* ── TEAM ── */
+  .team{background:var(--off);}
+  .team-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  .team-card{background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:all 0.3s;}
+  .team-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,158,148,0.1);border-color:rgba(0,158,148,0.3);}
+  .team-photo{height:220px;background:linear-gradient(135deg,var(--teal-pale) 0%,var(--light) 100%);display:flex;align-items:center;justify-content:center;position:relative;}
+  .team-photo-stripe{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--teal),var(--green));}
+  .team-emoji{font-size:4rem;}
+  .team-info{padding:1.5rem;}
+  .team-name{font-weight:800;color:var(--text);font-size:1rem;}
+  .team-role{font-size:0.72rem;font-weight:700;color:var(--teal);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem;}
+  .team-bio{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-top:0.75rem;}
+
+  /* ── TESTIMONIALS ── */
+  .testimonials{background:var(--white);}
+  .test-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;}
+  .g-box{background:var(--teal-pale);border:1px solid rgba(0,158,148,0.25);border-radius:12px;padding:1.25rem 1.75rem;text-align:right;}
+  .g-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:600;color:var(--teal);line-height:1;}
+  .g-stars-row{color:#f59e0b;font-size:1rem;margin-top:0.25rem;}
+  .g-label{font-size:0.75rem;font-weight:600;color:var(--muted);margin-top:0.25rem;letter-spacing:0.06em;}
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .test-card{background:var(--off);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all 0.3s;}
+  .test-card:hover{border-color:rgba(0,158,148,0.4);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,158,148,0.08);}
+  .test-stars{color:#f59e0b;font-size:0.85rem;margin-bottom:1rem;}
+  .test-quote{font-family:'Fraunces',serif;font-size:1.05rem;font-style:italic;color:var(--charcoal);line-height:1.7;margin-bottom:1.25rem;}
+  .test-foot{display:flex;align-items:center;gap:0.7rem;}
+  .test-avatar{width:36px;height:36px;border-radius:50%;background:var(--teal-pale);border:1.5px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;color:var(--teal);}
+  .test-name{font-size:0.875rem;font-weight:700;color:var(--text);}
+  .test-date{font-size:0.72rem;color:var(--muted);}
+
+  /* ── APPOINTMENT ── */
+  .appointment{background:var(--off);}
+  .appt-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;}
+  .appt-left p{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-top:1.25rem;}
+  .info-cards{display:flex;flex-direction:column;gap:0;margin-top:2rem;}
+  .info-card{display:flex;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border);}
+  .info-card:last-child{border-bottom:none;}
+  .info-icon{width:42px;height:42px;border-radius:10px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .info-val{font-weight:700;color:var(--text);font-size:0.9rem;}
+  .info-sub{font-size:0.78rem;color:var(--muted);margin-top:0.1rem;}
+
+  .hours-panel{margin-top:1.5rem;background:var(--teal);border-radius:14px;padding:1.5rem;}
+  .hours-h{font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.875rem;}
+  .h-row{display:flex;justify-content:space-between;font-size:0.84rem;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);}
+  .h-row:last-child{border-bottom:none;}
+  .h-day{color:rgba(255,255,255,0.5);}
+  .h-open{color:#a7f3d0;font-weight:600;}
+
+  .form-wrap{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2.5rem;box-shadow:0 4px 30px rgba(0,158,148,0.07);}
+  .form-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;}
+  .form-subtitle{font-size:0.84rem;color:var(--muted);margin-bottom:1.75rem;}
+  .f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fg{margin-bottom:1rem;}
+  .fg label{display:block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
+  .fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;color:var(--text);background:var(--white);transition:border-color 0.2s,box-shadow 0.2s;appearance:none;}
+  .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,158,148,0.1);}
+  .fg textarea{height:90px;resize:none;}
+  .submit-btn{width:100%;background:var(--teal);color:var(--white);border:none;padding:0.9rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.875rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .submit-btn:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,158,148,0.3);}
+  .form-footer{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.75rem;}
+
+  .success-box{display:none;text-align:center;padding:3rem 1rem;}
+  .success-box.show{display:block;}
+  .s-check{width:64px;height:64px;border-radius:50%;background:var(--teal-pale);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1rem;}
+  .success-box h3{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--text);margin-bottom:0.5rem;}
+  .success-box p{font-size:0.875rem;color:var(--muted);}
+
+  /* ── FOOTER ── */
+  footer{background:var(--dark);padding:4rem 5rem 2rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .fb-top{display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;}
+  .fb-top .fm{width:32px;height:32px;background:var(--teal);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+  .fb-top span{font-size:0.95rem;font-weight:800;color:var(--white);}
+  .footer-brand p{font-size:0.84rem;color:rgba(255,255,255,0.4);line-height:1.7;}
+  .fc h5{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1.25rem;}
+  .fc ul{list-style:none;}
+  .fc ul li{margin-bottom:0.5rem;}
+  .fc ul li a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.84rem;transition:color 0.2s;}
+  .fc ul li a:hover{color:var(--white);}
+  .footer-bottom{padding-top:2rem;display:flex;justify-content:space-between;align-items:center;font-size:0.76rem;color:rgba(255,255,255,0.25);}
+
+  /* WhatsApp FAB */
+  .wa-btn{
+    position:fixed;bottom:2rem;right:2rem;z-index:200;
+    width:56px;height:56px;border-radius:50%;
+    background:#25d366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 20px rgba(37,211,102,0.4);
+    text-decoration:none;font-size:1.6rem;
+    transition:all 0.2s;animation:fadeUp 1s ease 0.8s both;
+  }
+  .wa-btn:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
+  .wa-tooltip{
+    position:absolute;right:68px;top:50%;transform:translateY(-50%);
+    background:var(--dark);color:var(--white);
+    padding:0.4rem 0.9rem;border-radius:8px;
+    font-size:0.78rem;font-weight:600;white-space:nowrap;
+    opacity:0;transition:opacity 0.2s;pointer-events:none;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .wa-tooltip::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--dark);}
+  .wa-btn:hover .wa-tooltip{opacity:1;}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+
+  @media(max-width:900px){
+    nav{padding:0 1.25rem;}
+    .nav-links,.nav-call{display:none;}
+    .hero{grid-template-columns:1fr;padding:5.5rem 1.5rem 3rem;}
+    .hero-building,.hero-shape{display:none;}
+    section{padding:4rem 1.5rem;}
+    .svc-grid,.dept-grid{grid-template-columns:1fr 1fr;}
+    .whyus,.appt-grid{grid-template-columns:1fr;gap:3rem;}
+    .interior-mock{display:none;}
+    .team-grid,.test-grid{grid-template-columns:1fr;}
+    .svc-header,.dept-header,.team-header,.test-header{flex-direction:column;gap:1rem;align-items:flex-start;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;}
+    .f2{grid-template-columns:1fr;}
+    .pillars{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/254111011500" class="wa-btn" target="_blank">
+  <span>💬</span>
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+</a>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C7 2 3 6 3 11c0 3.5 1.9 6.6 4.7 8.3L12 22l4.3-2.7C19.1 17.6 21 14.5 21 11c0-5-4-9-9-9z" fill="rgba(255,255,255,0.25)"/>
+        <path d="M12 6c-1.5 0-2.8.6-3.8 1.5C7.2 8.5 6.5 9.8 6.5 11.3c0 3 2.5 4.5 5.5 4.5s5.5-1.5 5.5-4.5c0-1.5-.7-2.8-1.7-3.8C14.8 6.6 13.5 6 12 6z" fill="white" opacity="0.9"/>
+        <circle cx="12" cy="11" r="2" fill="rgba(0,158,148,0.8)"/>
+      </svg>
+    </div>
+    <div class="logo-words">
+      <span class="lw1">Columbia Africa</span>
+      <span class="lw2">Healthcare · Lavington</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#departments">Departments</a></li>
+    <li><a href="#team">Our Doctors</a></li>
+    <li><a href="#appointment">Book</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:0111011500" class="nav-call">📞 0111 011500</a>
+    <a href="#appointment" class="nav-book">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-shape"></div>
+  <!-- Building visual right side -->
+  <div class="hero-building">
+    <div class="building-card">
+      <div class="building-svg-wrap">
+        <div class="b-sky"></div>
+        <div class="b-ground"></div>
+        <!-- Main building -->
+        <div class="b-main">
+          <div class="b-stripe"></div>
+          <div class="b-sign">columbia africa</div>
+          <div class="b-glass" id="glassGrid"></div>
+          <div class="b-canopy"></div>
+        </div>
+        <!-- Wing -->
+        <div class="b-wing">
+          <div class="b-wing-glass" id="wingGrid"></div>
+        </div>
+      </div>
+      <div class="building-stats">
+        <div class="b-stat"><div class="b-stat-num">4.1★</div><div class="b-stat-lbl">Google</div></div>
+        <div class="b-stat"><div class="b-stat-num">181</div><div class="b-stat-lbl">Reviews</div></div>
+        <div class="b-stat"><div class="b-stat-num">7am</div><div class="b-stat-lbl">Opens</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Lavington, Nairobi · Accepting Patients</div>
+    <h1>
+      Exceptional<br>
+      <em>Healthcare</em><br>
+      Close to Home
+    </h1>
+    <p class="hero-sub">Columbia Africa Healthcare Lavington Clinic delivers world-class, patient-centred medical care — from outpatient consultations to specialist services, all under one roof on James Gichuru Road.</p>
+    <div class="hero-rating">
+      <span class="stars">★★★★☆</span>
+      <span class="rt"><strong>4.1</strong> on Google &nbsp;·&nbsp; <strong>181</strong> verified reviews</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#appointment" class="btn-teal">Book an Appointment →</a>
+      <a href="#departments" class="btn-ghost">Our Departments</a>
+    </div>
+    <div class="hero-chips">
+      <div class="chip">NHIF Accredited</div>
+      <div class="chip">Open from 7am</div>
+      <div class="chip">Walk-ins Welcome</div>
+      <div class="chip">Lab & Pharmacy On-site</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="svc-header reveal">
+    <div>
+      <div class="section-chip">Our Services</div>
+      <h2 class="section-title">Everything You Need,<br><em>In One Place</em></h2>
+    </div>
+    <p>Comprehensive outpatient and specialist care delivered by experienced clinicians in a modern, welcoming environment.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal"><span class="svc-emoji">🩺</span><div class="svc-name">General Outpatient</div><p class="svc-desc">Consultations, check-ups, chronic disease management, and referrals — by experienced GPs and physicians.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d1"><span class="svc-emoji">🤰</span><div class="svc-name">Maternity & OB/GYN</div><p class="svc-desc">Antenatal care, postnatal support, gynaecological consultations, and women's health screenings.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d2"><span class="svc-emoji">👶</span><div class="svc-name">Paediatrics</div><p class="svc-desc">Child health clinics, immunisations, growth monitoring, and specialist paediatric consultations.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d3"><span class="svc-emoji">🔬</span><div class="svc-name">Laboratory Services</div><p class="svc-desc">On-site diagnostics including blood tests, urinalysis, microbiology, and rapid results for urgent cases.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal"><span class="svc-emoji">🩻</span><div class="svc-name">Radiology & Imaging</div><p class="svc-desc">Ultrasound, X-ray, and ECG services with prompt reporting by qualified radiologists.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d1"><span class="svc-emoji">💊</span><div class="svc-name">In-house Pharmacy</div><p class="svc-desc">Fully stocked pharmacy with qualified pharmacists. Prescriptions dispensed immediately after consultation.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d2"><span class="svc-emoji">❤️</span><div class="svc-name">Cardiology</div><p class="svc-desc">ECG, echocardiography, and specialist cardiac consultations for heart health management and prevention.</p><div class="svc-more">Learn more →</div></div>
+    <div class="svc-card reveal d3"><span class="svc-emoji">🦷</span><div class="svc-name">Dental Services</div><p class="svc-desc">General and specialist dentistry including fillings, root canals, orthodontics, and oral hygiene.</p><div class="svc-more">Learn more →</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="whyus" id="about">
+  <!-- Interior mockup -->
+  <div class="interior-mock reveal">
+    <div class="int-ceiling"></div>
+    <div class="int-teal-wall">
+      <div class="int-logo-watermark">
+        <div class="ilw1">columbia africa</div>
+        <div class="ilw2">Healthcare</div>
+      </div>
+    </div>
+    <div class="int-teal-wall-accent"></div>
+    <div class="int-white-wall"></div>
+    <div class="int-dot"></div>
+    <div class="int-chairs">
+      <div class="int-chair"></div>
+      <div class="int-chair"></div>
+      <div class="int-chair"></div>
+      <div class="int-chair"></div>
+    </div>
+    <div class="int-desk"><div class="int-desk-text">Reception</div></div>
+    <div class="int-stat"><div class="isn">24+</div><div class="isl">Specialists</div></div>
+    <div class="int-open"><span>Open 7am–9pm</span></div>
+  </div>
+  <!-- Content -->
+  <div class="whyus-content reveal">
+    <div class="section-chip">Why Columbia Africa</div>
+    <h2 class="section-title">A Clinic Built<br>Around <em>You</em></h2>
+    <p>At Columbia Africa Healthcare Lavington, we believe exceptional healthcare should be accessible, efficient, and compassionate. Our modern facility at 90 James Gichuru Road is designed to deliver the highest standards of care to Nairobi families.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-icon">🏥</div><div class="pillar-name">Modern Facility</div><p class="pillar-desc">State-of-the-art clinic with advanced diagnostic equipment and comfortable consultation rooms.</p></div>
+      <div class="pillar"><div class="pillar-icon">👨‍⚕️</div><div class="pillar-name">Expert Clinicians</div><p class="pillar-desc">Experienced, fellowship-trained specialists across multiple disciplines under one roof.</p></div>
+      <div class="pillar"><div class="pillar-icon">⚡</div><div class="pillar-name">Fast Turnaround</div><p class="pillar-desc">Same-day lab results and radiology reports for most tests. No unnecessary waiting.</p></div>
+      <div class="pillar"><div class="pillar-icon">💳</div><div class="pillar-name">Flexible Payments</div><p class="pillar-desc">NHIF accredited. We accept major insurers and offer flexible out-of-pocket payment options.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="departments" id="departments">
+  <div class="dept-header reveal">
+    <div>
+      <div class="section-chip" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.2);">Our Departments</div>
+      <h2 class="section-title">Specialist Care<br><em>Across All Areas</em></h2>
+    </div>
+    <p>Every department is staffed by dedicated specialists committed to delivering the best clinical outcomes for our patients.</p>
+  </div>
+  <div class="dept-grid">
+    <div class="dept-card reveal"><div class="dept-icon">🧠</div><div class="dept-name">Neurology</div><p class="dept-sub">Headaches, epilepsy, stroke management, and neurological disorders.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d1"><div class="dept-icon">🦴</div><div class="dept-name">Orthopaedics</div><p class="dept-sub">Fractures, joint pain, sports injuries, and musculoskeletal conditions.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d2"><div class="dept-icon">👁️</div><div class="dept-name">Ophthalmology</div><p class="dept-sub">Eye exams, cataract assessments, glaucoma screening, and vision care.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d3"><div class="dept-icon">🫁</div><div class="dept-name">Pulmonology</div><p class="dept-sub">Asthma, COPD, respiratory infections, and lung function tests.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal"><div class="dept-icon">🩸</div><div class="dept-name">Endocrinology</div><p class="dept-sub">Diabetes management, thyroid disorders, and hormonal health.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d1"><div class="dept-icon">🧪</div><div class="dept-name">Dermatology</div><p class="dept-sub">Skin conditions, eczema, psoriasis, acne, and cosmetic consultations.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d2"><div class="dept-icon">🫀</div><div class="dept-name">Cardiology</div><p class="dept-sub">ECG, echo, hypertension management, and cardiac risk assessment.</p><span class="dept-arrow">Learn more →</span></div>
+    <div class="dept-card reveal d3"><div class="dept-icon">🏃</div><div class="dept-name">Physiotherapy</div><p class="dept-sub">Rehabilitation, post-surgery recovery, sports injuries, and pain management.</p><span class="dept-arrow">Learn more →</span></div>
+  </div>
+</section>
+
+<!-- RECEPTION -->
+<section class="reception" id="reception">
+  <div class="reception-wrap">
+    <div class="rec-mockup reveal">
+      <div class="rec-label">Reception</div>
+    </div>
+    <div class="rec-badge reveal">
+      <div class="rec-rating-num">4.1★</div>
+      <div class="rec-rating-text">181 GOOGLE REVIEWS</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-header reveal">
+    <div>
+      <div class="section-chip">Our Doctors</div>
+      <h2 class="section-title">Meet Our<br><em>Clinical Team</em></h2>
+    </div>
+    <a href="#appointment" class="btn-teal">Book a Consultation</a>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo"><div class="team-emoji">👨‍⚕️</div><div class="team-photo-stripe"></div></div>
+      <div class="team-info">
+        <div class="team-name">Dr. Catherine Njoroge, MBChB, MMed</div>
+        <div class="team-role">Consultant Physician & Medical Director</div>
+        <p class="team-bio">Internal medicine specialist with 14 years of clinical experience. Leads the outpatient department and chronic disease management programmes at Lavington.</p>
+      </div>
+    </div>
+    <div class="team-card reveal d1">
+      <div class="team-photo"><div class="team-emoji">👩‍⚕️</div><div class="team-photo-stripe"></div></div>
+      <div class="team-info">
+        <div class="team-name">Dr. Samuel Odhiambo, MBChB, MMed</div>
+        <div class="team-role">Consultant Paediatrician</div>
+        <p class="team-bio">Specialist in child and adolescent health. Trained at Kenyatta National Hospital with expertise in neonatal care and childhood immunisation programmes.</p>
+      </div>
+    </div>
+    <div class="team-card reveal d2">
+      <div class="team-photo"><div class="team-emoji">🧑‍⚕️</div><div class="team-photo-stripe"></div></div>
+      <div class="team-info">
+        <div class="team-name">Dr. Grace Wambua, MBChB, MMed</div>
+        <div class="team-role">Obstetrician & Gynaecologist</div>
+        <p class="team-bio">Women's health specialist providing antenatal care, gynaecological surgery, and reproductive health consultations. Fellow of the Kenya Obstetrical Society.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="test-header reveal">
+    <div>
+      <div class="section-chip">Patient Reviews</div>
+      <h2 class="section-title">What Our Patients<br><em>Are Saying</em></h2>
+    </div>
+    <div class="g-box">
+      <div class="g-num">4.1</div>
+      <div class="g-stars-row">★★★★☆</div>
+      <div class="g-label">181 Google Reviews<br>Columbia Africa Lavington</div>
+    </div>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"The facility is spotless, staff are courteous and professional. Lab results were ready within the hour. This is how a clinic should be run — efficient and patient-focused."</p>
+      <div class="test-foot"><div class="test-avatar">AW</div><div><div class="test-name">Abigael W.</div><div class="test-date">Google Review · 3 weeks ago</div></div></div>
+    </div>
+    <div class="test-card reveal d1">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Dr. Njoroge is exceptional — she listened carefully, explained everything clearly, and the follow-up was prompt. My children and I have been coming here for 3 years now."</p>
+      <div class="test-foot"><div class="test-avatar">TM</div><div><div class="test-name">Timothy M.</div><div class="test-date">Google Review · 1 month ago</div></div></div>
+    </div>
+    <div class="test-card reveal d2">
+      <div class="test-stars">★★★★☆</div>
+      <p class="test-quote">"The paediatrics department is outstanding. My son was nervous but the team made him feel completely at ease. Having the pharmacy right there is a huge convenience too."</p>
+      <div class="test-foot"><div class="test-avatar">NK</div><div><div class="test-name">Nancy K.</div><div class="test-date">Google Review · 2 months ago</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT -->
+<section class="appointment" id="appointment">
+  <div class="appt-grid">
+    <div class="appt-left reveal">
+      <div class="section-chip">Get In Touch</div>
+      <h2 class="section-title">Book Your<br><em>Appointment</em></h2>
+      <p>Fill in the form and our team will confirm your appointment within a few hours. Walk-ins are also welcome during opening hours.</p>
+      <div class="info-cards">
+        <div class="info-card"><div class="info-icon">📍</div><div><div class="info-val">90 James Gichuru Road</div><div class="info-sub">Lavington, Nairobi</div></div></div>
+        <div class="info-card"><div class="info-icon">📞</div><div><div class="info-val">0111 011500</div><div class="info-sub">Available during clinic hours</div></div></div>
+        <div class="info-card"><div class="info-icon">💬</div><div><div class="info-val">WhatsApp: 0111 011500</div><div class="info-sub">Quick responses on WhatsApp</div></div></div>
+        <div class="info-card"><div class="info-icon">🌐</div><div><div class="info-val">columbiaafricahealthcare.com</div><div class="info-sub">Book online, patient portal</div></div></div>
+      </div>
+      <div class="hours-panel">
+        <div class="hours-h">Opening Hours</div>
+        <div class="h-row"><span class="h-day">Monday – Friday</span><span class="h-open">7:00 am – 9:00 pm</span></div>
+        <div class="h-row"><span class="h-day">Saturday</span><span class="h-open">7:00 am – 6:00 pm</span></div>
+        <div class="h-row"><span class="h-day">Sunday</span><span class="h-open">9:00 am – 4:00 pm</span></div>
+        <div class="h-row"><span class="h-day">Public Holidays</span><span style="color:rgba(255,255,255,0.4);">Reduced hours</span></div>
+      </div>
+    </div>
+    <div class="form-wrap reveal">
+      <div id="apptForm">
+        <div class="form-title">Request an Appointment</div>
+        <div class="form-subtitle">We'll confirm your booking by phone or WhatsApp within a few hours.</div>
+        <div class="f2">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="e.g. Catherine"></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="e.g. Njeri"></div>
+        </div>
+        <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="07xx xxx xxx"></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="fg">
+          <label>Department / Service</label>
+          <select>
+            <option value="">Select department...</option>
+            <option>General Outpatient (GP)</option>
+            <option>Maternity & OB/GYN</option>
+            <option>Paediatrics</option>
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Orthopaedics</option>
+            <option>Dermatology</option>
+            <option>Dental Services</option>
+            <option>Laboratory / Radiology</option>
+            <option>Physiotherapy</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="fg"><label>Preferred Date</label><input type="date"></div>
+        <div class="fg"><label>Preferred Time</label>
+          <select>
+            <option value="">Select a time...</option>
+            <option>Morning (7am – 12pm)</option>
+            <option>Afternoon (12pm – 5pm)</option>
+            <option>Evening (5pm – 9pm)</option>
+          </select>
+        </div>
+        <div class="fg"><label>Notes (optional)</label><textarea placeholder="Any symptoms or specific concerns to share with the doctor..."></textarea></div>
+        <button class="submit-btn" onclick="submitAppt()">Confirm Appointment Request →</button>
+        <div class="form-footer">💳 NHIF, SHA & major insurers accepted · Walk-ins always welcome</div>
+      </div>
+      <div class="success-box" id="successBox">
+        <div class="s-check">✓</div>
+        <h3>Booking Confirmed!</h3>
+        <p>Thank you — a member of our team will call or WhatsApp you shortly to confirm your appointment at Columbia Africa Healthcare, Lavington.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-top">
+        <div class="fm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" fill="rgba(255,255,255,0.3)"/><circle cx="12" cy="12" r="4" fill="white"/><circle cx="12" cy="12" r="1.5" fill="rgba(0,158,148,0.7)"/></svg>
+        </div>
+        <span>Columbia Africa Healthcare</span>
+      </div>
+      <p>Patient-centred, world-class healthcare delivered from our modern Lavington Clinic. Serving Nairobi families and beyond since our founding.</p>
+    </div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="#">General Outpatient</a></li><li><a href="#">Maternity & OB/GYN</a></li><li><a href="#">Paediatrics</a></li><li><a href="#">Cardiology</a></li><li><a href="#">Laboratory</a></li><li><a href="#">Pharmacy</a></li></ul></div>
+    <div class="fc"><h5>Hospital</h5><ul><li><a href="#">Our Doctors</a></li><li><a href="#">Departments</a></li><li><a href="#">Insurance Info</a></li><li><a href="#">Patient Portal</a></li><li><a href="#">Careers</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="tel:0111011500">0111 011500</a></li><li><a href="#">90 James Gichuru Rd</a></li><li><a href="#">Lavington, Nairobi</a></li><li><a href="#">columbiaafricahealthcare.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Columbia Africa Healthcare Limited. All rights reserved.</span>
+    <span>Privacy Policy · HIPAA · Accessibility · Sitemap</span>
+  </div>
+</footer>
+
+<script>
+// Build glass panes
+const g = document.getElementById('glassGrid');
+if(g){for(let i=0;i<30;i++){const p=document.createElement('div');p.className='b-pane'+(Math.random()>0.6?' bright':'');g.appendChild(p);}}
+const w = document.getElementById('wingGrid');
+if(w){for(let i=0;i<15;i++){const p=document.createElement('div');p.className='b-wpane';w.appendChild(p);}}
+
+// Ticker
+const items=['General Outpatient','Maternity & OB/GYN','Paediatrics','Laboratory Services','Radiology & Imaging','Cardiology','Physiotherapy','Dental Services','In-house Pharmacy','Dermatology','Orthopaedics','Neurology'];
+const track = document.getElementById('tickerTrack');
+if(track){[...items,...items].forEach(t=>{const d=document.createElement('div');d.className='ticker-item';d.innerHTML=`${t}<div class="ticker-dot"></div>`;track.appendChild(d);});}
+
+// Reveal
+const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').style.boxShadow=window.scrollY>60?'0 4px 24px rgba(0,158,148,0.1)':'none';
+});
+
+// Form
+function submitAppt(){
+  document.getElementById('apptForm').style.display='none';
+  document.getElementById('successBox').classList.add('show');
+}
+
+// Init reveals
+setTimeout(()=>{document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible');});},80);
+</script>
+</body>
+</html>
